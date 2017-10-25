@@ -1,0 +1,21 @@
+h2 {
+  font-weight: 200;
+  color: grey;
+  margin: 30px 0 15px 15px;
+}
+
+.col-lg-12 {
+  padding: 0;
+  @include max-width-height(450px, null);
+  border: 1px solid $light-grey;
+  border-radius: .25rem .25rem 0 0;
+  input[name] {
+    @include no-boder-input;
+    &:hover {
+      border-color: black !important;
+    }
+  }
+  button:first-of-type {
+    margin: 0 15px 30px;
+  }
+}

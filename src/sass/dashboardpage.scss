@@ -1,0 +1,21 @@
+input[value='<'],
+input[value='>'] {
+  font-size: 2rem;
+}
+
+.bg-lightblue {
+  background-color: $light-blue;
+}
+
+table {
+  height: 450px;
+  td {
+    height: 5rem;
+  }
+  th {
+    vertical-align: middle !important;
+    text-align: center;
+    width: 6rem;
+    height: 3rem;
+  }
+}

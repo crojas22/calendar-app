@@ -1,0 +1,77 @@
+h2 {
+  font-weight: 200;
+  color: grey;
+  margin: 30px 0 15px 15px; }
+
+.col-lg-12 {
+  padding: 0;
+  max-width: 450px;
+  border: 1px solid #e7e7e7;
+  border-radius: .25rem .25rem 0 0; }
+  .col-lg-12 input[name] {
+    border: 0 !important;
+    margin: 0 15px 0 15px;
+    padding: 8px 0;
+    border-bottom: 1px solid #e7e7e7 !important;
+    font-weight: lighter;
+    border-radius: 0; }
+    .col-lg-12 input[name]:hover {
+      border-color: black !important; }
+  .col-lg-12 button:first-of-type {
+    margin: 0 15px 30px; }
+
+img {
+  position: fixed;
+  z-index: -2; }
+
+.home {
+  background-color: rgba(0, 0, 0, 0.6); }
+
+h1,
+h3 {
+  font-weight: 300; }
+
+h5::before {
+  position: absolute;
+  z-index: 1;
+  content: "";
+  width: 30%;
+  height: 2px;
+  background: #e96656;
+  bottom: -9px;
+  left: 35%; }
+
+.icon {
+  width: 145px;
+  height: 145px;
+  border-radius: 50%;
+  border: 10px solid #ececec;
+  opacity: 0;
+  animation: fade-in-right ease 1s forwards; }
+  .icon:hover {
+    border: 10px solid #e96656; }
+
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateY(20px); }
+  to {
+    opacity: 1;
+    transform: translateY(0); } }
+
+input[value='<'],
+input[value='>'] {
+  font-size: 2rem; }
+
+.bg-lightblue {
+  background-color: rgba(0, 123, 255, 0.4); }
+
+table {
+  height: 450px; }
+  table td {
+    height: 5rem; }
+  table th {
+    vertical-align: middle !important;
+    text-align: center;
+    width: 6rem;
+    height: 3rem; }

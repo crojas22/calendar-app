@@ -1,0 +1,13 @@
+@mixin no-boder-input {
+  border: 0 !important;
+  margin: 0 15px 0 15px;
+  padding: 8px 0;
+  border-bottom: 1px solid $light-grey !important;
+  font-weight: lighter;
+  border-radius: 0;
+}
+
+@mixin max-width-height($width, $height) {
+  max-width: $width;
+  max-height: $height;
+}
