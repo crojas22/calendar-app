@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { logoutUser } from '../../actions/verification'
-import BtnLink from './BtnLink'
+import { BtnInput, BtnLink } from './Buttons'
 
 const Navbar = ({auth, logoutUser, history, name}) => {
   return(
@@ -28,9 +28,8 @@ const Navbar = ({auth, logoutUser, history, name}) => {
             !auth ? null : <span className='mr-2 d-none d-md-inline text-muted text-capitalize'>Hello, {name}</span>
           }
           {
-            !auth ? <BtnLink to='/login' title='Log in' classes='rounded-0 btn btn-outline-success my-2 my-sm-0' />
-              : <input type='button' value='Sign out' onClick={() => logoutUser(history)}
-                className='rounded-0 btn btn-outline-success my-2 my-sm-0' />
+            !auth ? <BtnLink to='/login' title='Log in' classes='btn-outline-success my-2 my-sm-0' />
+            : <BtnInput title='Sign out' classes='btn-outline-success my-2 my-sm-0' onClick={() => logoutUser(history)} />
           }
         </div>
       </div>

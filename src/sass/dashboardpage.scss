@@ -7,7 +7,7 @@ input[value='>'] {
   background-color: $light-blue;
 }
 
-table {
+.table1 {
   height: 450px;
   td {
     height: 5rem;
@@ -15,7 +15,15 @@ table {
   th {
     vertical-align: middle !important;
     text-align: center;
-    width: 6rem;
     height: 3rem;
+  }
+}
+
+.table2 {
+  input[value='X'] {
+    opacity: 0;
+  }
+  td:hover input[value='X'] {
+    opacity: 1;
   }
 }

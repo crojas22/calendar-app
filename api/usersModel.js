@@ -8,8 +8,9 @@ const CalendarEventSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  color: {
-    type: String
+  eventDate: {
+    type: String,
+    required: true
   },
   compleated: {
     type: Boolean,

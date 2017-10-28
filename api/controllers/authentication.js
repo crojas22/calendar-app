@@ -23,14 +23,22 @@ export const login = (req, res) => {
     } else {
       user.comparePassword(req.body.password, (err, isMatch) => {
         if (isMatch && !err) {
-          let token = jwt.sign({user}, config.secret, {
+          const info = { _id: user._id, email: user.email, name: user.name }
+          let token = jwt.sign({info}, config.secret, {
             expiresIn: 3600
           })
-          res.json({token: token, user: user})
+          res.json({token, user})
         } else {
           res.send({success: false, message: 'Authentication failed. Passwords did not match.'})
         }
       })
     }
+  })
+}
+
+// verification
+export const verify = (req, res) => {
+  User.findById(req.user.info._id, (err, result) => {
+    res.json({result, content: 'verified'})
   })
 }

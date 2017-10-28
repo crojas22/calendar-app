@@ -5,8 +5,8 @@ import { registerUser, loginUser, logoutUser } from '../actions/verification'
 import Navbar from './reusable/Navbar'
 import Home from './Home'
 import Homepage from './Homepage'
-import Login from './login-register/Login'
-import Register from './login-register/Register'
+import Login from './forms/Login'
+import Register from './forms/Register'
 
 const Main = ({ auth, registerUser, loginUser, logoutUser, location, history, info }) => {
 

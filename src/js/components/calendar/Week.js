@@ -15,7 +15,7 @@ const Week = (props) => {
       isToday: date.isSame(new Date(), "day")
     }
     days.push(
-      <td key={i} className={'text-center' + (day.date.isSame(props.selected) ? " bg-lightblue text-white" : "")
+      <td key={i} className={'text-center' + (day.date.isSame(props.selected._d) ? " bg-lightblue text-white" : "")
       + (day.isCurrentMonth ? "" : " text-muted bg-light") + (day.isToday ? ' text-primary' : '')}
       onClick={() => props.select(day)}>{day.number}</td>
     )

@@ -7,7 +7,7 @@ h2 {
   padding: 0;
   max-width: 450px;
   border: 1px solid #e7e7e7;
-  border-radius: .25rem .25rem 0 0; }
+  border-radius: 0; }
   .col-lg-12 input[name] {
     border: 0 !important;
     margin: 0 15px 0 15px;
@@ -19,6 +19,16 @@ h2 {
       border-color: black !important; }
   .col-lg-12 button:first-of-type {
     margin: 0 15px 30px; }
+
+.add-event-form input[name] {
+  border: 0 !important;
+  margin: 0 15px 0 15px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e7e7e7 !important;
+  font-weight: lighter;
+  border-radius: 0; }
+  .add-event-form input[name]:hover {
+    border-color: black !important; }
 
 img {
   position: fixed;
@@ -66,12 +76,17 @@ input[value='>'] {
 .bg-lightblue {
   background-color: rgba(0, 123, 255, 0.4); }
 
-table {
+.table1 {
   height: 450px; }
-  table td {
+  .table1 td {
     height: 5rem; }
-  table th {
+  .table1 th {
     vertical-align: middle !important;
     text-align: center;
-    width: 6rem;
     height: 3rem; }
+
+.table2 input[value='X'] {
+  opacity: 0; }
+
+.table2 td:hover input[value='X'] {
+  opacity: 1; }

@@ -1,32 +1,27 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import Week from './Week'
-import DayNames from './DayNames'
+import DailyCalendar from './DailyCalendar'
+import { BtnInput } from '../reusable/Buttons'
 
 class Calendar extends Component {
   constructor(props) {
     super(props)
     this.state = {
       month : moment(),
-      select: moment()._d
+      select: moment()
     }
   }
 
-  select = (day) => {
-    this.setState({ select: day.date._d})
-  }
+  select = day => this.setState({ select: day.date})
 
-  previous = () => {
-    const month = this.state.month
-    month.add(-1, 'M')
-    this.setState({ month: month })
-  }
+  previous = () => this.setState({ month: this.state.month.add(-1, 'M') })
 
-  next = () => {
-    const month = this.state.month
-    month.add(1, 'M')
-    this.setState({ month: month })
-  }
+  previousDay = () => this.setState({ select: this.state.select.add(-1, 'day') })
+
+  next = () => this.setState({ month: this.state.month.add(1, 'M') })
+
+  nextDay = () => this.setState({ select: this.state.select.add(1, 'day') })
 
   renderWeeks = () => {
     let weeks = [],
@@ -43,32 +38,45 @@ class Calendar extends Component {
     return weeks
   }
 
-  renderMonthLabel = () => {
-    return <span className='py-4 d-inline-block text-white'>{this.state.month.format("MMMM, YYYY")}</span>
+  renderDayNames = () => {
+    let arr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    return arr.map((day) => (
+      <th key={day}>{day}</th>
+    ))
+  }
+
+  renderLabel = (format, x) => <span className='py-4 d-inline-block text-white'>{x.format(format)}</span>
+
+  renderDailyCalendar = () => {
+    return <DailyCalendar {...this.state} renderLabel={this.renderLabel}
+      prev={this.previousDay} next={this.nextDay}/>
   }
 
   render() {
     return(
       <div className='container mt-5'>
-        <div className='row justify-content-center'>
-          <div className='col-xs-12 col-sm-8 pt-5 px-0 justify-content-center'>
-            <table className="table table-responsive">
+        <div className='row justify-content-sm-between justify-content-lg-around'>
+          <div className='col-xs-12 col-md-5 col-lg-6 pt-5 px-0 px-sm-1'>
+            <table className="table table-responsive table1">
               <thead>
                 <tr className='bg-primary'>
                   <th colSpan='7' className='text-center'>
-                    <input className='float-left btn btn-outline-primary text-white'
-                      type='button' value='<' onClick={this.previous}/>
-                    {this.renderMonthLabel()}
-                    <input className='float-right btn btn-outline-primary text-white'
-                      type='button' value='>' onClick={this.next}/>
+                    <BtnInput title='<' classes='btn-outline-primary float-left text-white' onClick={this.previous}/>
+                    {this.renderLabel("MMMM, YYYY", this.state.month)}
+                    <BtnInput title='>' classes='btn-outline-primary float-right text-white' onClick={this.next}/>
                   </th>
                 </tr>
-                <DayNames />
+                <tr>
+                  { this.renderDayNames() }
+                </tr>
               </thead>
               <tbody>
-                {this.renderWeeks()}
+                { this.renderWeeks() }
               </tbody>
             </table>
+          </div>
+          <div className='col-xs-12 col-md-5 col-lg-6 pt-5 px-0 px-1'>
+            { this.renderDailyCalendar() }
           </div>
         </div>
       </div>
