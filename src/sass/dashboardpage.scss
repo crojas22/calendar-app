@@ -19,11 +19,34 @@ input[value='>'] {
   }
 }
 
+// to delete button
 .table2 {
-  input[value='X'] {
+  .btn-group {
     opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
-  td:hover input[value='X'] {
+  td:hover .btn-group {
     opacity: 1;
   }
+}
+
+// total number of events in week component
+.week-span {
+  position: absolute;
+  display: inline-block;
+  bottom: 5px;
+  left: 38%;
+  font-size: .8rem;
+  color: white;
+}
+
+// line-height
+.l-h {
+  line-height: 2;
+}
+// position relative
+.ps-relative {
+  position: relative;
 }

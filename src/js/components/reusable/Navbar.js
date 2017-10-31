@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { logoutUser } from '../../actions/verification'
 import { BtnInput, BtnLink } from './Buttons'
 
-const Navbar = ({auth, logoutUser, history, name}) => {
+const Navbar = ({auth, logoutUser, history, info}) => {
   return(
     <nav className="navbar navbar-expand-md navbar-light bg-white fixed-top">
       <a className="navbar-brand" href="#"></a>
@@ -25,7 +25,7 @@ const Navbar = ({auth, logoutUser, history, name}) => {
         </ul>
         <div className="form-inline my-2 my-lg-0">
           {
-            !auth ? null : <span className='mr-2 d-none d-md-inline text-muted text-capitalize'>Hello, {name}</span>
+            !auth ? null : <span className='mr-2 d-none d-md-inline text-muted text-capitalize'>Hello, {info.name}</span>
           }
           {
             !auth ? <BtnLink to='/login' title='Log in' classes='btn-outline-success my-2 my-sm-0' />

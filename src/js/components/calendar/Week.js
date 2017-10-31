@@ -1,6 +1,16 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const Week = (props) => {
+const Week = props => {
+
+  const totalEvents = variable => {
+    if (props.events) {
+      let total = props.events.filter((each) => (
+        each.eventDate === variable.toString().slice(0,16)
+      )).length
+      if (total > 0) return <span className='week-span py-1 px-2 rounded-circle bg-primary'>{total}</span>
+    }
+  }
 
   let days = [],
     date = props.date,
@@ -8,16 +18,22 @@ const Week = (props) => {
     i = 0
   for (i; i < 7; i++) {
     let day = {
-      name: date.format('dd').substring(0,1),
       number: date.date(),
-      date: date,
+      date,
       isCurrentMonth: date.month() === month.month(),
       isToday: date.isSame(new Date(), "day")
     }
     days.push(
-      <td key={i} className={'text-center' + (day.date.isSame(props.selected._d) ? " bg-lightblue text-white" : "")
-      + (day.isCurrentMonth ? "" : " text-muted bg-light") + (day.isToday ? ' text-primary' : '')}
-      onClick={() => props.select(day)}>{day.number}</td>
+      <td key={i} onClick={() => props.selectHandle(day)} className={'text-center ps-relative '
+        + (day.date.isSame(props.selected._d) ? " bg-lightblue text-white" : "")
+        + (day.isCurrentMonth ? "" : " text-muted bg-light") + (day.isToday ? ' text-primary' : '')}>
+        {
+          day.number
+        }
+        {
+          totalEvents(day.date._d)
+        }
+      </td>
     )
     date = date.clone()
     date.add(1, 'd')
@@ -28,4 +44,6 @@ const Week = (props) => {
   )
 }
 
-export default Week
+const mapStateToProps = state => ({ events: state.userInfo.events})
+
+export default connect(mapStateToProps)(Week)

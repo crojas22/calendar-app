@@ -22,9 +22,12 @@ export const verify = token => {
 ///// CRUD for events
 
 // add event
-export const addEventApi = (_id, text, date, token) => {
-  return axios.post(apiUrl('addevent'), {_id, text, date}, {
-    headers: { Authorization: `Bearer ${token}` }
+export const addEventApi = (text, date, token) => {
+  return axios({
+    url: apiUrl('addevent'),
+    method: 'post',
+    headers: { Authorization: `Bearer ${token}`},
+    data: {text, date}
   })
 }
 
@@ -33,4 +36,14 @@ export const removeEventApi = (token, item_id) => {
   return axios.delete(apiUrl(`deleteevent/${item_id}`), {
     headers: { Authorization: `Bearer ${token}` }
   }, {item_id})
+}
+
+// edit event
+export const editEventApi = (token, item_id, index, eventDate, text) => {
+  return axios({
+    url: apiUrl('editevent'),
+    method:'put',
+    headers: { Authorization: `Bearer ${token}` },
+    data: {item_id, index, eventDate, text}
+  })
 }

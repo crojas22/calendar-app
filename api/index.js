@@ -1,13 +1,9 @@
 import express from 'express'
-import mongoose from 'mongoose'
 import { registration, login, verify } from './controllers/authentication'
-import { addCalendarEvent, deleteCalendarEvent } from './controllers/calendarevent'
-import config from '../config'
+import { addCalendarEvent, deleteCalendarEvent, editCalendarEvent } from './controllers/calendarevent'
 import User from './usersModel'
 
 const router = express.Router()
-mongoose.connect(config.mongodbUri, { useMongoClient: true })
-mongoose.Promise = global.Promise
 
 // Registration
 router.post('/register', registration)
@@ -21,6 +17,9 @@ router.get('/verify', verify)
 router.post('/addevent', addCalendarEvent)
 // delete
 router.delete('/deleteevent/:id', deleteCalendarEvent)
+// edit
+router.put('/editevent', editCalendarEvent)
+
 
 
 

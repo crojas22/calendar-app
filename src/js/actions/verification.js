@@ -1,26 +1,47 @@
 import Cookies from 'universal-cookie'
-import { register, login, verify, getEventApi, removeEventApi, addEventApi } from '../api/index'
+import { register, login, verify, getEventApi, removeEventApi, addEventApi,
+  editEventApi } from '../api/index'
 
 const cookie = new Cookies()
-const tokens = cookie.get('token')
 const user = cookie.get('user')
 
-export const userAuthorized = (bool, payload) => ({ type: 'AUTH_USER', authorized: bool })
+export const userAuthorized = bool => {
+  return {
+    type: 'AUTH_USER',
+    authorized: bool
+  }
+}
 
-export const getUserInfo = payload => ({ type: 'USER_INFO', payload })
+export const getUserInfo = payload => {
+  return {
+    type: 'USER_INFO',
+    payload
+  }
+}
 
-export const removeUserInfo = () => ({ type: 'REMOVE_USER_INFO' })
+export const removeUserInfo = () => {
+  return {
+    type: 'REMOVE_USER_INFO'
+  }
+}
 
-export const didRegister = bool => ({ type: 'REGISTRATION_SUCCESS', registered: bool })
+export const didRegister = bool => {
+  return {
+    type: 'REGISTRATION_SUCCESS',
+    registered: bool
+  }
+}
 
 export const loginUser = (email, password, history) => {
   return (dispatch) => {
     login(email, password).then(resp => {
-      cookie.set('token', resp.token, {path: '/'})
-      cookie.set('user', resp.user, {path: '/'})
-      dispatch(userAuthorized(true))
-      dispatch(getUserInfo(resp.user))
-      history.push('/homepage')
+      if (resp.success === true) {
+        cookie.set('token', resp.token, {path: '/'})
+        cookie.set('user', resp.user, {path: '/'})
+        dispatch(userAuthorized(true))
+        dispatch(getUserInfo(resp.user))
+        history.push('/homepage')
+      }
     })
   }
 }
@@ -46,8 +67,10 @@ export const logoutUser = history => {
 
 export const verificationTest = history => {
   return (dispatch) => {
+    const cookie = new Cookies()
+    const tokens = cookie.get('token')
     tokens ? verify(tokens).then(resp => {
-      if (resp.data.content === 'verified') {
+      if (resp.data.success === true) {
         dispatch(userAuthorized(true))
         dispatch(getUserInfo(resp.data.result))
       } else {
@@ -61,16 +84,26 @@ export const verificationTest = history => {
 // Add event
 export const addEventAction = (text, date) => {
   return (dispatch) => {
-    addEventApi(user._id, text, date.toString().slice(0,16), tokens)
+    const tokens = cookie.get('token')
+    addEventApi(text, date.toString().slice(0,16), tokens)
     .then(resp => {
       dispatch(getUserInfo(resp.data))
     })
   }
 }
-// Remove event 
+// Remove event
 export const removeEventAction = item_id => {
   return (dispatch) => {
+    const tokens = cookie.get('token')
     removeEventApi(tokens, item_id)
+    .then(resp => dispatch(getUserInfo(resp.data)))
+  }
+}
+// Edit event
+export const editEventAction = (item_id, index, eventDate, text) => {
+  return (dispatch) => {
+    const tokens = cookie.get('token')
+    editEventApi(tokens, item_id, index, eventDate, text)
     .then(resp => dispatch(getUserInfo(resp.data)))
   }
 }

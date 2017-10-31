@@ -20,9 +20,6 @@ app.use(cors())
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(bodyParser.json())
-
 app.use(expressJWT({secret: config.secret}).unless({
   path: ['/', '/login', '/register', '/api/login', '/api/register', '/homepage']
 }))
@@ -39,6 +36,9 @@ app.use(expressJWT({
     return null;
   }
 }))
+
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
 
 app.use('/api', apiRouter)
 

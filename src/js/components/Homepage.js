@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { verificationTest } from '../actions/verification'
 import Calendar from './calendar/Calendar'
 
 class Homepage extends Component {
@@ -11,23 +8,14 @@ class Homepage extends Component {
   }
 
   render() {
-    const { userAuthorized } = this.props
     return(
       <div>
         {
-          !userAuthorized ? null : <Calendar />
+          !this.props.auth ? null : <Calendar {...this.props} />
         }
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return { userAuthorized: state.userAuthorized }
-}
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ verificationTest }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage)
+export default Homepage

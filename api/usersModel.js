@@ -2,6 +2,10 @@
 
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
+import config from '../config'
+
+const connection = mongoose.connect(config.mongodbUri, { useMongoClient: true })
+mongoose.Promise = global.Promise
 
 const CalendarEventSchema = new mongoose.Schema({
   text: {
@@ -11,6 +15,10 @@ const CalendarEventSchema = new mongoose.Schema({
   eventDate: {
     type: String,
     required: true
+  },
+  updating: {
+    type: Boolean,
+    default: false
   },
   compleated: {
     type: Boolean,
@@ -23,7 +31,8 @@ const CalendarEventSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  digits: Number
 })
 
 const UserSchema = new mongoose.Schema({

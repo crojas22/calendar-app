@@ -19,7 +19,7 @@ export const login = (req, res) => {
   User.findOne({email: req.body.email}, (err, user) => {
     if (err) throw error
     if(!user) {
-      res.send({ success: false, message: 'Authentication failed. User not found.' })
+      res.json({ success: false, message: 'Authentication failed. User not found.' })
     } else {
       user.comparePassword(req.body.password, (err, isMatch) => {
         if (isMatch && !err) {
@@ -27,9 +27,9 @@ export const login = (req, res) => {
           let token = jwt.sign({info}, config.secret, {
             expiresIn: 3600
           })
-          res.json({token, user})
+          res.json({success: true, token, user})
         } else {
-          res.send({success: false, message: 'Authentication failed. Passwords did not match.'})
+          res.json({success: false, message: 'Authentication failed'})
         }
       })
     }
@@ -39,6 +39,6 @@ export const login = (req, res) => {
 // verification
 export const verify = (req, res) => {
   User.findById(req.user.info._id, (err, result) => {
-    res.json({result, content: 'verified'})
+    res.json({result, success: true})
   })
 }
