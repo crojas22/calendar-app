@@ -50,10 +50,10 @@ class Calendar extends Component {
 
   render() {
     return(
-      <div className='container mt-5'>
-        <div className='row justify-content-sm-between justify-content-lg-around'>
-          <div className='col-xs-12 col-md-5 col-lg-6 pt-5 px-0 px-sm-1'>
-            <table className="table table-responsive table1">
+       <div className='container mt-5'>
+        <div className='row pt-3'>
+          <div className='col-lg-6 pt-2 px-2'>
+            <table className="table table1 bg-white" style={{boxShadow: '3px 3px 1px 1px black'}}>
               <thead>
                 <tr className='bg-primary'>
                   <th colSpan='7' className='text-center'>
@@ -71,12 +71,12 @@ class Calendar extends Component {
               </tbody>
             </table>
           </div>
-          <div className='col-xs-12 col-md-5 col-lg-6 pt-5 px-0 px-1'>
+          <div className='col-lg-6 pt-2 px-2'>
             <DailyCalendar {...this.state} {...this.props} renderLabel={this.renderLabel}
               prev={this.previousDay} next={this.nextDay}/>
           </div>
         </div>
-      </div>
+       </div>
     )
   }
 }

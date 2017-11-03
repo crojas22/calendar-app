@@ -28,3 +28,11 @@ h2 {
     }
   }
 }
+
+input[name='input'] {
+  @include no-boder-input;
+  padding: 6px 0 5px;
+  &:hover {
+    border-color: black !important;
+  }
+}

@@ -11,3 +11,15 @@
   max-width: $width;
   max-height: $height;
 }
+
+@mixin position ($top, $bottom, $left, $right) {
+  top: $top;
+  bottom: $bottom;
+  left: $left;
+  right: $right;
+}
+
+@mixin width-height ($width, $height) {
+  width: $width;
+  height: $height;
+}

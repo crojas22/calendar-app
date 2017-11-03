@@ -30,6 +30,17 @@ h2 {
   .add-event-form input[name]:hover {
     border-color: black !important; }
 
+input[name='input'] {
+  border: 0 !important;
+  margin: 0 15px 0 15px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e7e7e7 !important;
+  font-weight: lighter;
+  border-radius: 0;
+  padding: 6px 0 5px; }
+  input[name='input']:hover {
+    border-color: black !important; }
+
 img {
   position: fixed;
   z-index: -2; }
@@ -76,8 +87,14 @@ input[value='>'] {
 .bg-lightblue {
   background-color: rgba(0, 123, 255, 0.4); }
 
+@media only screen and (max-width: 400px) {
+  .table1 {
+    display: block;
+    overflow-x: auto; } }
+
 .table1 {
-  height: 450px; }
+  box-shadow: 4px 4px 2px 2px black;
+  max-height: 450px; }
   .table1 td {
     height: 5rem; }
   .table1 th {
@@ -85,14 +102,18 @@ input[value='>'] {
     text-align: center;
     height: 3rem; }
 
-.table2 .btn-group {
-  opacity: 0;
-  position: absolute;
-  right: 0;
-  top: 0; }
+.nav-link {
+  border-radius: 0 !important; }
 
-.table2 td:hover .btn-group {
-  opacity: 1; }
+.table2 {
+  box-shadow: 4px 4px 2px 2px black; }
+  .table2 .btn-group {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0; }
+  .table2 td:hover .btn-group {
+    opacity: 1; }
 
 .week-span {
   position: absolute;
@@ -107,3 +128,10 @@ input[value='>'] {
 
 .ps-relative {
   position: relative; }
+
+.compleated {
+  text-decoration: line-through;
+  color: #dc3746; }
+
+.ps-absolute {
+  position: absolute; }

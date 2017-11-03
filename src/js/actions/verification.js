@@ -1,6 +1,6 @@
 import Cookies from 'universal-cookie'
 import { register, login, verify, getEventApi, removeEventApi, addEventApi,
-  editEventApi } from '../api/index'
+  editEventApi, compleateEventApi } from '../api/index'
 
 const cookie = new Cookies()
 const user = cookie.get('user')
@@ -40,7 +40,9 @@ export const loginUser = (email, password, history) => {
         cookie.set('user', resp.user, {path: '/'})
         dispatch(userAuthorized(true))
         dispatch(getUserInfo(resp.user))
-        history.push('/homepage')
+        history.push('/calendar')
+      } else {
+        alert(resp.message)
       }
     })
   }
@@ -82,10 +84,10 @@ export const verificationTest = history => {
 
 // CRUD
 // Add event
-export const addEventAction = (text, date) => {
+export const addEventAction = (text, date, start, end) => {
   return (dispatch) => {
     const tokens = cookie.get('token')
-    addEventApi(text, date.toString().slice(0,16), tokens)
+    addEventApi(text, date.toString().slice(0,16), start, end, tokens)
     .then(resp => {
       dispatch(getUserInfo(resp.data))
     })
@@ -104,6 +106,14 @@ export const editEventAction = (item_id, index, eventDate, text) => {
   return (dispatch) => {
     const tokens = cookie.get('token')
     editEventApi(tokens, item_id, index, eventDate, text)
+    .then(resp => dispatch(getUserInfo(resp.data)))
+  }
+}
+// compleate event
+export const compleateEventAction = (index, eventDate) => {
+  return (dispatch) => {
+    const tokens = cookie.get('token')
+    compleateEventApi(tokens, index, eventDate)
     .then(resp => dispatch(getUserInfo(resp.data)))
   }
 }

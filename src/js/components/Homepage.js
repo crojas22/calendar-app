@@ -9,7 +9,7 @@ class Homepage extends Component {
 
   render() {
     return(
-      <div>
+      <div className='container-fluid h-100'>
         {
           !this.props.auth ? null : <Calendar {...this.props} />
         }

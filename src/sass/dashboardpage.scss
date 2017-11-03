@@ -7,8 +7,16 @@ input[value='>'] {
   background-color: $light-blue;
 }
 
+@media only screen and (max-width: 400px) {
+  .table1 {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
 .table1 {
-  height: 450px;
+  box-shadow: 4px 4px 2px 2px black;
+  max-height: 450px;
   td {
     height: 5rem;
   }
@@ -19,8 +27,13 @@ input[value='>'] {
   }
 }
 
+.nav-link {
+  border-radius: 0 !important;
+}
+
 // to delete button
 .table2 {
+  box-shadow: 4px 4px 2px 2px black;
   .btn-group {
     opacity: 0;
     position: absolute;
@@ -49,4 +62,13 @@ input[value='>'] {
 // position relative
 .ps-relative {
   position: relative;
+}
+// line
+.compleated {
+  text-decoration: line-through;
+  color: #dc3746;
+}
+// positon absolute
+.ps-absolute {
+  position: absolute;
 }

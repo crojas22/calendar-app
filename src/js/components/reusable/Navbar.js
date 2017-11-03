@@ -17,10 +17,7 @@ const Navbar = ({auth, logoutUser, history, info}) => {
             <NavLink className="nav-link" exact to='/'>Home</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" exact to='/login'>Login</NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" exact to='/homepage'>Homepage</NavLink>
+            <NavLink className="nav-link" exact to='/calendar'>myCalendar</NavLink>
           </li>
         </ul>
         <div className="form-inline my-2 my-lg-0">

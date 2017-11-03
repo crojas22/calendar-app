@@ -32,7 +32,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <section className='bg-white py-5'>
+      <section className='bg-white py-5 h-100'>
         <div className='container mb-5'>
           <h3 className='text-center'>Title Placeholder</h3>
           <h6 className='text-center pb-sm-3'>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</h6>

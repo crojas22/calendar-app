@@ -21,7 +21,7 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 app.use(expressJWT({secret: config.secret}).unless({
-  path: ['/', '/login', '/register', '/api/login', '/api/register', '/homepage']
+  path: ['/', '/login', '/register', '/api/login', '/api/register', '/calendar']
 }))
 
 app.use(expressJWT({
@@ -54,6 +54,11 @@ app.get('*', (req, res, next) => {
     initialMarkup,
     preloadedState
   })
+})
+
+app.use((error, req, res, next) => {
+  console.log(error.message)
+  res.json({ message: error.message })
 })
 
 app.listen(config.port, config.host, () => {

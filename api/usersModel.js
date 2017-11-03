@@ -32,7 +32,12 @@ const CalendarEventSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  digits: Number
+  start: {
+    type: String
+  },
+  end: {
+    type: String
+  }
 })
 
 const UserSchema = new mongoose.Schema({
@@ -57,7 +62,7 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.methods.comparePassword = function(password, callback) {
   bcrypt.compare(password, this.password, function(err, isMatch) {
-    if (err) return callback(err)
+    if (err) return callback(err, isMatch)
     callback(null, isMatch)
   })
 }
@@ -74,6 +79,12 @@ UserSchema.pre('save', function(next) {
   } else {
     return next()
   }
+})
+
+UserSchema.pre('save', function(next) {
+  const user = this
+  user.calendarEvent.sort(function(a,b) {return parseInt(a.start) - parseInt(b.start)})
+  return next()
 })
 
 const User = mongoose.model('User', UserSchema)

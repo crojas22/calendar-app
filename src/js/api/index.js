@@ -22,12 +22,12 @@ export const verify = token => {
 ///// CRUD for events
 
 // add event
-export const addEventApi = (text, date, token) => {
+export const addEventApi = (text, date, start, end, token) => {
   return axios({
     url: apiUrl('addevent'),
     method: 'post',
     headers: { Authorization: `Bearer ${token}`},
-    data: {text, date}
+    data: {text, date, start, end}
   })
 }
 
@@ -42,8 +42,18 @@ export const removeEventApi = (token, item_id) => {
 export const editEventApi = (token, item_id, index, eventDate, text) => {
   return axios({
     url: apiUrl('editevent'),
-    method:'put',
+    method: 'put',
     headers: { Authorization: `Bearer ${token}` },
     data: {item_id, index, eventDate, text}
+  })
+}
+
+// compleate event
+export const compleateEventApi = (token, index, eventDate) => {
+  return axios({
+    url: apiUrl('compleateevent'),
+    method: 'put',
+    headers: { Authorization: `Bearer ${token}` },
+    data: {index, eventDate}
   })
 }

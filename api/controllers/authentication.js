@@ -3,23 +3,25 @@ import config from '../../config'
 import User from './../usersModel'
 
 // Registration
-export const registration = (req, res) => {
+export const registration = (req, res, next) => {
   if (req.body.password !== req.body.confirm) {
     res.send({success: false, message: 'Password and Confirmation Password do not match'})
   }
   const userData = { name: req.body.name, email: req.body.email, password: req.body.password }
   User.create(userData, (error, user) => {
-    if(error) res.json({success: false})
+    if(error) return next(err)
     res.json({success: true})
   })
 }
 
 // Login
-export const login = (req, res) => {
+export const login = (req, res, next) => {
   User.findOne({email: req.body.email}, (err, user) => {
-    if (err) throw error
+    if(err) return next(err)
     if(!user) {
-      res.json({ success: false, message: 'Authentication failed. User not found.' })
+      err = new Error("User not found")
+      err.status = 404
+      return next(err)
     } else {
       user.comparePassword(req.body.password, (err, isMatch) => {
         if (isMatch && !err) {
@@ -29,7 +31,8 @@ export const login = (req, res) => {
           })
           res.json({success: true, token, user})
         } else {
-          res.json({success: false, message: 'Authentication failed'})
+          err = new Error("Password does not match records")
+          next(err)
         }
       })
     }
@@ -37,8 +40,9 @@ export const login = (req, res) => {
 }
 
 // verification
-export const verify = (req, res) => {
+export const verify = (req, res, next) => {
   User.findById(req.user.info._id, (err, result) => {
+    if(err) return next(err)
     res.json({result, success: true})
   })
 }
