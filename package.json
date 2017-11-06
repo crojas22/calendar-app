@@ -10,7 +10,6 @@
   "scripts": {
     "dev": "webpack -wd",
     "server": "nodemon --exec babel-node server.js --ignore public/",
-    "build": "webpack --optimize-minimize",
     "postinstall": "webpack -p",
     "start": "node server.js"
   },
@@ -28,8 +27,7 @@
     "node-sass": "^4.5.3",
     "nodemon": "^1.12.1",
     "react-router-dom": "^4.2.2",
-    "sass-loader": "^6.0.6",
-    "webpack": "^3.8.1"
+    "sass-loader": "^6.0.6"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -47,6 +45,7 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "universal-cookie": "^2.1.0"
+    "universal-cookie": "^2.1.0",
+    "webpack": "^3.8.1"
   }
 }
