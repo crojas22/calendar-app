@@ -57,7 +57,6 @@ app.get('*', (req, res, next) => {
 })
 
 app.use((error, req, res, next) => {
-  console.log(error.message)
   res.json({ message: error.message })
 })
 
