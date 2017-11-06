@@ -9,10 +9,10 @@ const InfoOfDay = props => {
 
   return(
     <tr>
-      <td className=''>
+      <td>
         <div>
           <p>Total/Compleated Events</p>
-          <div className="progress">
+          <div className="progress mb-1">
             <div className="progress-bar" role="progressbar"
               style={{width: (total === 0 ? `0%` : `${Math.floor(calcGoalProgress(compleated, total))}%`)}}>
               { total }/{ compleated }

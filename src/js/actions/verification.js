@@ -51,8 +51,12 @@ export const loginUser = (email, password, history) => {
 export const registerUser = (name, email, password, confirm) => {
   return (dispatch) => {
     register(name, email, password, confirm).then(resp => {
-      dispatch(didRegister(true))
-      window.location.href = `${window.location.origin}/login`
+      if (resp.success === true) {
+        dispatch(didRegister(true))
+        window.location.href = `${window.location.origin}/login`
+      } else {
+        alert(resp.message)
+      }
     })
   }
 }
@@ -87,7 +91,7 @@ export const verificationTest = history => {
 export const addEventAction = (text, date, start, end) => {
   return (dispatch) => {
     const tokens = cookie.get('token')
-    addEventApi(text, date.toString().slice(0,16), start, end, tokens)
+    addEventApi(text, date.toString().slice(4,15), start, end, tokens)
     .then(resp => {
       dispatch(getUserInfo(resp.data))
     })

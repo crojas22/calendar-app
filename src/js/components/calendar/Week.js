@@ -6,7 +6,7 @@ const Week = props => {
   const totalEvents = variable => {
     if (props.events) {
       let total = props.events.filter((each) => (
-        each.eventDate === variable.toString().slice(0,16)
+        each.eventDate === variable.toString().slice(4,15)
       )).length
       if (total > 0) return <span className='week-span py-1 px-2 rounded-circle bg-primary'>{total}</span>
     }
@@ -25,7 +25,7 @@ const Week = props => {
     }
     days.push(
       <td key={i} onClick={() => props.selectHandle(day)} className={'text-center ps-relative '
-        + (day.date.isSame(props.selected._d) ? " bg-lightblue text-white" : "")
+        + (day.date.isSame(props.selected._d) ? " bg-lightblue text-white " : "")
         + (day.isCurrentMonth ? "" : " text-muted bg-light") + (day.isToday ? ' text-primary' : '')}>
         {
           day.number

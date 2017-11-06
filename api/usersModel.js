@@ -62,7 +62,7 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.methods.comparePassword = function(password, callback) {
   bcrypt.compare(password, this.password, function(err, isMatch) {
-    if (err) return callback(err, isMatch)
+    if (err) return callback(err)
     callback(null, isMatch)
   })
 }

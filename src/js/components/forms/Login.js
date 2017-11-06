@@ -19,12 +19,16 @@ const Login = ({handleLogin, history}) => {
           <form className='col-lg-12 bg-white mx-auto mt-5' onSubmit={handleSubmit}>
             <h2>Log in</h2>
             <div className='form-group'>
+
               <input type='email' name='email' className='form-control w-75'
-                ref={input => _email = input}  placeholder='Email'required/>
+              ref={input => _email = input}  placeholder='Email'required/>
+
             </div>
             <div className='form-group'>
-            <input type='password' name='password' className='form-control w-75'
+
+              <input type='password' name='password' className='form-control w-75'
               ref={input => _password = input}  placeholder='Password' required/>
+
             </div>
             <div className='col-xs-12'>
               <BtnSubmit title='Log in' classes='btn-outline-success' />

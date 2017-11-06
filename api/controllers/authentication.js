@@ -5,11 +5,13 @@ import User from './../usersModel'
 // Registration
 export const registration = (req, res, next) => {
   if (req.body.password !== req.body.confirm) {
-    res.send({success: false, message: 'Password and Confirmation Password do not match'})
+    let err = new Error("Password do not match")
+    err.status = 404
+    return next(err)
   }
   const userData = { name: req.body.name, email: req.body.email, password: req.body.password }
   User.create(userData, (error, user) => {
-    if(error) return next(err)
+    if(error) return next(error)
     res.json({success: true})
   })
 }

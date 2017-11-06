@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import Week from './Week'
 import DailyCalendar from './DailyCalendar'
+import InfoOfMonth from './InfoOfMonth'
 import { BtnInput } from '../reusable/Buttons'
 
 class Calendar extends Component {
@@ -15,11 +16,11 @@ class Calendar extends Component {
 
   selectFunction = day => this.setState({ select: day.date})
 
-  previous = () => this.setState({ month: this.state.month.add(-1, 'M') })
+  previous = () => this.setState({ month: this.state.month.add(-1, 'month') })
 
   previousDay = () => this.setState({ select: this.state.select.add(-1, 'day') })
 
-  next = () => this.setState({ month: this.state.month.add(1, 'M') })
+  next = () => this.setState({ month: this.state.month.add(1, 'month') })
 
   nextDay = () => this.setState({ select: this.state.select.add(1, 'day') })
 
@@ -42,13 +43,14 @@ class Calendar extends Component {
   }
 
   renderDayNames = () => {
-    let arr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const arr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     return arr.map((day) => <th key={day}>{day}</th>)
   }
 
   renderLabel = (format, x) => <span className='py-4 d-inline-block text-white'>{x.format(format)}</span>
 
   render() {
+
     return(
        <div className='container mt-5'>
         <div className='row pt-3'>
@@ -58,10 +60,13 @@ class Calendar extends Component {
                 <tr className='bg-primary'>
                   <th colSpan='7' className='text-center'>
                     <BtnInput title='<' classes='btn-outline-primary float-left text-white' onClick={this.previous}/>
-                    {this.renderLabel("MMMM, YYYY", this.state.month)}
+                    { this.renderLabel("MMMM, YYYY", this.state.month) }
                     <BtnInput title='>' classes='btn-outline-primary float-right text-white' onClick={this.next}/>
                   </th>
                 </tr>
+
+                <InfoOfMonth { ...this.state } events={this.props.userInfo.events}/>
+
                 <tr>
                   { this.renderDayNames() }
                 </tr>
@@ -72,11 +77,13 @@ class Calendar extends Component {
             </table>
           </div>
           <div className='col-lg-6 pt-2 px-2'>
+
             <DailyCalendar {...this.state} {...this.props} renderLabel={this.renderLabel}
-              prev={this.previousDay} next={this.nextDay}/>
+            prev={this.previousDay} next={this.nextDay}/>
+
           </div>
         </div>
-       </div>
+      </div>
     )
   }
 }

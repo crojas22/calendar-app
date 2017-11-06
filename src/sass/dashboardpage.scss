@@ -21,14 +21,11 @@ input[value='>'] {
     height: 5rem;
   }
   th {
+    width: 4rem !important;
     vertical-align: middle !important;
     text-align: center;
     height: 3rem;
   }
-}
-
-.nav-link {
-  border-radius: 0 !important;
 }
 
 // to delete button
@@ -43,6 +40,10 @@ input[value='>'] {
   td:hover .btn-group {
     opacity: 1;
   }
+  .drop {
+    height: 2rem;
+    line-height: 0.75;
+  }
 }
 
 // total number of events in week component
@@ -50,7 +51,7 @@ input[value='>'] {
   position: absolute;
   display: inline-block;
   bottom: 5px;
-  left: 38%;
+  left: 33%;
   font-size: .8rem;
   color: white;
 }
@@ -68,6 +69,7 @@ input[value='>'] {
   text-decoration: line-through;
   color: #dc3746;
 }
+
 // positon absolute
 .ps-absolute {
   position: absolute;

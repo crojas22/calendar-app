@@ -19,20 +19,28 @@ const Register = ({registration}) => {
           <form onSubmit={handleSubmit} className='col-lg-12 mx-auto bg-white mt-5'>
             <h2>Register</h2>
             <div className='form-group'>
+
               <input type='text' name='name' ref={(input) => _fullName = input}
-                className='form-control w-75' placeholder='Full name' required/>
+              className='form-control w-75' placeholder='Full name' required/>
+
             </div>
             <div className='form-group'>
+
               <input type='email' name='email' ref={(input) => _email = input}
-                className='form-control w-75' placeholder='Email' required/>
+              className='form-control w-75' placeholder='Email' required/>
+
             </div>
             <div className='form-group'>
+
               <input type='password' name='password' ref={(input) => _password = input}
-                className='form-control w-75' placeholder='Password' required/>
+              className='form-control w-75' placeholder='Password' required/>
+
             </div>
             <div className='form-group'>
+
               <input type='password' name='confirm' ref={input => _confirm = input}
-                className='form-control w-75' placeholder='Confirm password' required/>
+              className='form-control w-75' placeholder='Confirm password' required/>
+              
             </div>
             <div className='col-xs-12'>
               <BtnSubmit title='Register' classes='btn-outline-success' />
