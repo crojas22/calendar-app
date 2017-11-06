@@ -10,7 +10,7 @@ export const userAuthorized = bool => {
     type: 'AUTH_USER',
     authorized: bool
   }
-}
+} 
 
 export const getUserInfo = payload => {
   return {
