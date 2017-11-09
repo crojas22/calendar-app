@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import InfoOfDay from './InfoOfDay'
 import { BtnInput, BtnSubmit } from '../reusable/Buttons'
+import ItemsDailyEvents from './ItemsDailyEvents'
 
 class DailyCalendar extends Component {
   constructor(props){
@@ -14,6 +15,7 @@ class DailyCalendar extends Component {
   eventsForToday = () => this.props.userInfo.events ?
     this.props.userInfo.events.filter(this.filterDate) : []
 
+  // will make sure new time being picked is not taken already
   verifyTime = () => {
     let start = moment(this._start.value, 'H:mm'),
         end = moment(this._end.value, 'H:mm')
@@ -21,8 +23,10 @@ class DailyCalendar extends Component {
     return this.eventsForToday().filter((each) => {
       let arrayBefore = moment(each.start, 'H:mm'),
           arrayAfter = moment(each.end, 'H:mm')
-      return !arrayBefore.isBetween(start, end) && !arrayAfter.isBetween(start, end)
-      && !start.isBetween(arrayBefore, arrayAfter) && !end.isBetween(arrayBefore, arrayAfter)
+      return !arrayBefore.isBetween(start, end)
+      && !arrayAfter.isBetween(start, end)
+      && !start.isBetween(arrayBefore, arrayAfter)
+      && !end.isBetween(arrayBefore, arrayAfter)
     })
   }
 
@@ -40,20 +44,27 @@ class DailyCalendar extends Component {
 
   filterDate = date => date.eventDate === this.props.select._d.toString().slice(4,15)
 
-  isEditingHandle = () => this.setState({isEditing: !this.state.isEditing})
+  isEditingHandle = () => this.setState({ isEditing: !this.state.isEditing })
 
   render() {
-    const { renderLabel, select, prev, next, userInfo, removeEventAction, editEventAction,
-      compleateEventAction } = this.props
+
+    const { renderLabel, select, prev, next, userInfo,
+      removeEventAction, editEventAction, compleateEventAction } = this.props
 
     return(
       <table className="table table2 bg-white">
         <thead>
           <tr className='bg-primary'>
+
             <th colSpan='3' className='text-center text-white'>
-              <BtnInput title='<' classes='btn-outline-primary float-left text-white' onClick={prev}/>
+              <BtnInput title='<' onClick={prev}
+              classes='btn-outline-primary float-left text-white'/>
+
               { renderLabel("dddd MMM Do", select ) }
-              <BtnInput title='>' classes='btn-outline-primary float-right text-white' onClick={next}/>
+
+              <BtnInput title='>' onClick={next}
+              classes='btn-outline-primary float-right text-white'/>
+
             </th>
           </tr>
         </thead>
@@ -71,8 +82,10 @@ class DailyCalendar extends Component {
                     <div className='col px-0'>
                       <form className='add-event-form m-0'>
 
-                        <input type='text' name='text' className=' form-control w-75 mx-0 mb-2'
-                        ref={input => this._text = input}  placeholder='Add event' required/>
+                        <input type='text' name='text'
+                        ref={input => this._text = input}
+                        className='form-control w-75 mx-0 mb-2'
+                        placeholder='Add event' required/>
 
                         <div className='bg-white'>
                         <div>
@@ -91,62 +104,28 @@ class DailyCalendar extends Component {
                           </div>
                         </div>
 
-                        <BtnSubmit classes="btn-outline-success mt-2 d-inline-block" title='Save'/>
-                        <BtnInput classes="btn-outline-danger mt-2 ml-3" title='Cancel' onClick={this.isEditingHandle}/>
-                        
+                        <BtnSubmit title='Save'
+                        classes="btn-outline-success mt-2 d-inline-block"/>
+
+                        <BtnInput classes="btn-outline-danger mt-2 ml-3"
+                        title='Cancel' onClick={this.isEditingHandle}/>
+
                       </form>
                     </div>
                   </div>
                 </div>
                 :
-                <BtnInput title='+' classes='btn-outline-success btn-sm' onClick={this.isEditingHandle} />
+                <BtnInput title='+' classes='btn-outline-success btn-sm'
+                onClick={this.isEditingHandle} />
               }
 
             </td>
           </tr>
 
-          {
-            this.eventsForToday().map((each, index) => (
-              <tr key={index}>
-                <td className={'pt-0 l-h ' + (each.compleated ? 'bg-light' : '')}>
-                  <a className='d-block py-3 btn btn-outline-light rounded-0 border-0 dropdown-toggle'
-                  data-toggle="collapse" data-target={`.target-${index}`}></a>
-                  <div className={`collapse target-${index}`}>
-                    <div className="d-flex">
-
-                      <BtnInput title='Edit' classes='btn-primary border-0 btn-block'
-                      onClick={() => editEventAction(each._id, index, each.eventDate)}/>
-
-                      <BtnInput title={(each.compleated) ? 'Incompleate' : 'Compleate'}
-                      classes='btn-primary border-0 btn-block m-0'
-                      onClick={() => compleateEventAction(index, each.eventDate)}/>
-
-                      <BtnInput title='Delete' classes='btn-danger border-0 btn-block m-0'
-                      onClick={() => removeEventAction(each._id)}/>
-
-                    </div>
-                  </div>
-                  <small className='text-muted mr-3'>start: {moment(each.start, 'hh:mm').format('hh:mm a')} </small>
-                  <small className='text-muted'>end: {moment(each.end, 'hh:mm').format('hh:mm a')} </small>
-                  {
-                    each.updating ?
-                    <div className='input-group w-75'>
-
-                      <input type='text' name='input' className='form-control mx-0'
-                      ref={input => this._edit = input}  placeholder={each.text} required/>
-
-                      <BtnInput title='Save' classes='btn-outline-success'
-                      onClick={() => editEventAction(each._id, index, each.eventDate, this._edit.value)}/>
-
-                    </div>
-                    :
-                    <p className={'m-0 ' + (each.compleated ? 'compleated ' : '')}
-                    style={{padding: '3px 0 3px'}}>{each.text}</p>
-                  }
-                </td>
-              </tr>
-            ))
-          }
+          <ItemsDailyEvents events={this.eventsForToday()}
+            edit={editEventAction} compleate={compleateEventAction}
+            remove={removeEventAction}
+          />
 
         </tbody>
       </table>

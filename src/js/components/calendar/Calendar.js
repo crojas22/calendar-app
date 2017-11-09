@@ -24,6 +24,7 @@ class Calendar extends Component {
 
   nextDay = () => this.setState({ select: this.state.select.add(1, 'day') })
 
+
   renderWeeks = () => {
     let weeks = [],
       done = false,
@@ -36,16 +37,19 @@ class Calendar extends Component {
         selectHandle={this.selectFunction} selected={this.state.select}/>
       )
       date.add(1, 'w')
+      // if 1st week has last month and current month, loop wont stop on 1st week
       done = count++ > 2 && monthIndex !== date.month()
       monthIndex = date.month()
     }
     return weeks
   }
 
+
   renderDayNames = () => {
     const arr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     return arr.map((day) => <th key={day}>{day}</th>)
   }
+
 
   renderLabel = (format, x) => <span className='py-4 d-inline-block text-white'>{x.format(format)}</span>
 
@@ -55,13 +59,19 @@ class Calendar extends Component {
        <div className='container mt-5'>
         <div className='row pt-3'>
           <div className='col-lg-6 pt-2 px-2'>
-            <table className="table table1 bg-white" style={{boxShadow: '3px 3px 1px 1px black'}}>
+            <table className="table table1 bg-white">
               <thead>
                 <tr className='bg-primary'>
                   <th colSpan='7' className='text-center'>
-                    <BtnInput title='<' classes='btn-outline-primary float-left text-white' onClick={this.previous}/>
+
+                    <BtnInput title='<' onClick={this.previous}
+                    classes='btn-outline-primary float-left text-white'/>
+
                     { this.renderLabel("MMMM, YYYY", this.state.month) }
-                    <BtnInput title='>' classes='btn-outline-primary float-right text-white' onClick={this.next}/>
+
+                    <BtnInput title='>' onClick={this.next}
+                    classes='btn-outline-primary float-right text-white'/>
+
                   </th>
                 </tr>
 
@@ -78,8 +88,8 @@ class Calendar extends Component {
           </div>
           <div className='col-lg-6 pt-2 px-2'>
 
-            <DailyCalendar {...this.state} {...this.props} renderLabel={this.renderLabel}
-            prev={this.previousDay} next={this.nextDay}/>
+            <DailyCalendar {...this.state} {...this.props}  next={this.nextDay}
+            renderLabel={this.renderLabel} prev={this.previousDay}/>
 
           </div>
         </div>

@@ -1,7 +1,31 @@
+body, html {
+  padding: 0;
+  margin: 0;
+}
 
 .image {
   background: linear-gradient(rgba(0,0,0, .6), rgba(0,0,0, 1)),
               url('https://static.pexels.com/photos/273011/pexels-photo-273011.jpeg') center / cover no-repeat fixed black;
+  .background {
+    height: 80%;
+  }
+}
+
+.bg-transparent {
+  background: transparent;
+  transition: .5s;
+}
+
+.bg-grey {
+  background-color: #f1f1f1;
+  transition: 1s;
+}
+
+
+
+.main {
+  height: 100%;
+  width: 100%;
 }
 
 h1,
@@ -39,5 +63,44 @@ h3 {
 }
 
 .section2 {
-  background: linear-gradient(rgba(77, 146, 66, .4), rgba(77, 146, 69, .9))
+  background: linear-gradient(rgba(42, 166, 71, .4), rgba(42, 166, 71, .9));
+}
+
+@media only screen and (max-width: 767px) {
+  .icon ~ p {
+    padding: 0 4rem;
+  }
+  .col-md-3:nth-child(n+1):after {
+    content : "";
+    position: absolute;
+    top: 0;
+    left: 15%;
+    width: 70%;
+    height: 1px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .col-md-3:nth-child(n+2):before {
+    content : "";
+    position: absolute;
+    top: 15%;
+    left: 0;
+    width: 1px;
+    height: 70%;
+    border-left: 1px solid rgba(0,0,0,0.1);
+  }
+  h5 {
+    position: relative;
+  }
+  h5:before {
+    content : "";
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    width: 70%;
+    height: 1px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
 }

@@ -10,7 +10,7 @@ export const userAuthorized = bool => {
     type: 'AUTH_USER',
     authorized: bool
   }
-} 
+}
 
 export const getUserInfo = payload => {
   return {
@@ -81,6 +81,7 @@ export const verificationTest = history => {
         dispatch(getUserInfo(resp.data.result))
       } else {
         dispatch(userAuthorized(false))
+        history.push('/login')
       }
     }) : history.push('/login')
   }

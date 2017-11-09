@@ -24,8 +24,9 @@ const Main = props => {
   }
 
   return(
-    <div>
-      <Navbar auth={auth} logoutUser={logoutUser} history={history} info={userInfo} />
+    <div className={'main ' + (pathname === '/' ? '' : 'd-flex align-items-center')}>
+      <Navbar auth={auth} logoutUser={logoutUser} history={history}
+      path={pathname} info={userInfo} />
       {
         pathname === '/' ? <Home /> :
         pathname === '/login' ? <Login handleLogin={handleLogin} history={history}/> :

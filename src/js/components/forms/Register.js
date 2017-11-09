@@ -15,8 +15,8 @@ const Register = ({registration}) => {
   return(
     <div className='container-fluid'>
       <div className='row justify-content-center'>
-        <div className='col-xs-12 col-sm-9 col-md-7 mt-5 px-1'>
-          <form onSubmit={handleSubmit} className='col-lg-12 mx-auto bg-white mt-5'>
+        <div className='col-xs-12 col-sm-9 col-md-7 px-1'>
+          <form onSubmit={handleSubmit} className='col-lg-12 mx-auto bg-white'>
             <h2>Register</h2>
             <div className='form-group'>
 
@@ -40,13 +40,18 @@ const Register = ({registration}) => {
 
               <input type='password' name='confirm' ref={input => _confirm = input}
               className='form-control w-75' placeholder='Confirm password' required/>
-              
+
             </div>
             <div className='col-xs-12'>
+
               <BtnSubmit title='Register' classes='btn-outline-success' />
+
             </div>
             <div className='col-xs-12'>
-              <BtnLink to='/login' title='Click here to log in' classes='btn btn-primary btn-lg btn-block' />
+
+              <BtnLink to='/login' title='Click here to log in'
+              classes='btn btn-primary btn-lg btn-block' />
+
             </div>
           </form>
         </div>

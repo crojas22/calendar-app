@@ -15,8 +15,8 @@ const Login = ({handleLogin, history}) => {
   return(
     <div className='container-fluid'>
       <div className='row justify-content-center'>
-        <div className='col-xs-12 col-sm-9 col-md-7 mt-5 px-1'>
-          <form className='col-lg-12 bg-white mx-auto mt-5' onSubmit={handleSubmit}>
+        <div className='col-xs-12 col-sm-9 col-md-7 px-1 py-5'>
+          <form className='col-lg-12 bg-white mx-auto' onSubmit={handleSubmit}>
             <h2>Log in</h2>
             <div className='form-group'>
 
@@ -34,7 +34,10 @@ const Login = ({handleLogin, history}) => {
               <BtnSubmit title='Log in' classes='btn-outline-success' />
             </div>
             <div className='col-xs-12'>
-              <BtnLink to='/register' title='Click here to register' classes='btn-primary btn-lg btn-block' />
+
+              <BtnLink to='/register' title='Click here to register'
+              classes='btn-primary btn-lg btn-block' />
+
             </div>
           </form>
         </div>
