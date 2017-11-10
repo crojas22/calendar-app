@@ -81,6 +81,7 @@ export const verificationTest = history => {
         dispatch(getUserInfo(resp.data.result))
       } else {
         dispatch(userAuthorized(false))
+        dispatch(removeUserInfo())
         history.push('/login')
       }
     }) : history.push('/login')

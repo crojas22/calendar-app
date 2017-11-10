@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { registerUser, loginUser, logoutUser, verificationTest, addEventAction,
   removeEventAction, compleateEventAction , editEventAction } from '../actions/verification'
+import { getWeatherInfo, getForecastInfo } from '../actions/weather'
 import Navbar from './reusable/Navbar'
 import Home from './Home'
 import Calendar from './calendar/Calendar'
@@ -47,7 +48,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     registerUser, loginUser, logoutUser, verificationTest, addEventAction,
-    removeEventAction, compleateEventAction, editEventAction
+    removeEventAction, compleateEventAction, editEventAction, getWeatherInfo,
+    getForecastInfo
   }, dispatch)
 }
 

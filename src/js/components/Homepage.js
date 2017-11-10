@@ -5,6 +5,8 @@ class Homepage extends Component {
 
   componentDidMount() {
     this.props.verificationTest(this.props.history)
+    this.props.getWeatherInfo()
+    this.props.getForecastInfo()
   }
 
   render() {

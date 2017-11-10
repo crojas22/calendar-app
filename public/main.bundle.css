@@ -183,6 +183,41 @@ input[value='>'] {
 .ps-absolute {
   position: absolute; }
 
+.calendar {
+  margin-top: 65px; }
+  .calendar .conditions-circle {
+    position: relative;
+    border-radius: 50%;
+    height: 12rem;
+    width: 12rem;
+    background: linear-gradient(#f4b701, #b6c609); }
+    .calendar .conditions-circle:before {
+      content: "";
+      background-color: white;
+      width: 11rem;
+      height: 11rem;
+      position: absolute;
+      border-radius: 50%;
+      top: .5rem;
+      left: .5rem; }
+    .calendar .conditions-circle .text-center {
+      position: relative; }
+    .calendar .conditions-circle .temperature {
+      margin: auto; }
+      .calendar .conditions-circle .temperature span:first-child {
+        font-size: 4rem;
+        position: relative;
+        left: -5; }
+      .calendar .conditions-circle .temperature span:last-child {
+        position: absolute;
+        top: 33%;
+        left: 70%; }
+        .calendar .conditions-circle .temperature span:last-child:before {
+          content: 'o';
+          position: relative;
+          top: -3;
+          left: -5; }
+
 @keyframes fade-in-right {
   from {
     opacity: 0;

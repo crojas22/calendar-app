@@ -25,7 +25,7 @@ class Navbar extends Component{
   }
 
   render() {
-    const {auth, logoutUser, history, info} = this.props
+    const { auth, logoutUser, history, info } = this.props
     return(
       <nav className={"navbar navbar-expand-md fixed-top " +
       (this.props.path !== '/' ? 'bg-light navbar-light' : this.props.path === '/'
@@ -46,13 +46,18 @@ class Navbar extends Component{
               <NavLink className="nav-link" exact to='/calendar'>myCalendar</NavLink>
             </li>
           </ul>
-          <div className="form-inline my-2 my-lg-0">
+          <div className="form-inline my-1">
             {
-              !auth ? null : <span className='mr-2 d-none d-md-inline text-muted text-capitalize'>Hello, {info.name}</span>
+              !auth ? null :
+              <span className='mr-2 d-none d-md-inline text-muted text-capitalize'>
+                Hello, {info.name}
+              </span>
             }
             {
               !auth ? <BtnLink to='/login' title='Log in' classes='btn-success my-2 my-sm-0' />
-              : <BtnInput title='Sign out' classes='btn-success my-2 my-sm-0' onClick={() => logoutUser(history)} />
+              :
+              <BtnInput title='Sign out' classes='btn-success my-2 my-sm-0'
+              onClick={() => logoutUser(history)} />
             }
           </div>
         </div>

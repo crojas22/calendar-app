@@ -57,3 +57,18 @@ export const compleateEventApi = (token, index, eventDate) => {
     data: {index, eventDate}
   })
 }
+
+///////WEATHER
+export const getWeatherApi = (state, city) => {
+  return axios({
+    url: `https://api.wunderground.com/api/${config.weatherApiKey}/conditions/q/${state}/${city}.json`,
+    method: 'get'
+  })
+}
+
+export const getForecastApi = (state, city) => {
+  return axios({
+    url: `https://api.wunderground.com/api/${config.weatherApiKey}/forecast/q/${state}/${city}.json`,
+    method: 'get'
+  })
+}

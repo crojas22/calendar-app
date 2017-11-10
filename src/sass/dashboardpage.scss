@@ -74,3 +74,47 @@ input[value='>'] {
 .ps-absolute {
   position: absolute;
 }
+
+/// weather
+.calendar {
+  margin-top: 65px;
+  .conditions-circle {
+    position: relative;;
+    border-radius: 50%;
+    height: 12rem;
+    width: 12rem;
+    background: linear-gradient(rgb(244, 183, 1), rgb(182, 198, 9));
+    &:before {
+      content: "";
+      background-color: white;
+      width: 11rem;
+      height: 11rem;
+      position: absolute;
+      border-radius: 50%;
+      top: .5rem;
+      left: .5rem;
+    }
+    .text-center {
+      position: relative;
+    }
+    .temperature {
+      margin: auto;
+      span:first-child {
+        font-size: 4rem;
+        position: relative;
+        left: -5;
+      }
+      span:last-child {
+        position: absolute;
+        top: 33%;
+        left: 70%;
+        &:before {
+          content: 'o';
+          position: relative;
+          top: -3;
+          left: -5;
+        }
+      }
+    }
+  }
+}

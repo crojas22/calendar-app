@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import Week from './Week'
+import WeatherInfo from './WeatherInfo'
 import DailyCalendar from './DailyCalendar'
 import InfoOfMonth from './InfoOfMonth'
 import { BtnInput } from '../reusable/Buttons'
 
 class Calendar extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      month : moment(),
-      select: moment()
-    }
+  state = {
+    month : moment(),
+    select: moment()
   }
 
   selectFunction = day => this.setState({ select: day.date})
@@ -56,7 +54,10 @@ class Calendar extends Component {
   render() {
 
     return(
-       <div className='container mt-5'>
+       <div className='calendar container'>
+
+        <WeatherInfo />
+
         <div className='row pt-3'>
           <div className='col-lg-6 pt-2 px-2'>
             <table className="table table1 bg-white">
